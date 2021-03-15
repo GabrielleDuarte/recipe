@@ -1,34 +1,42 @@
 package com.br.recipe.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import java.util.List;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.br.recipe.entity.Food;
-import com.br.recipe.service.FoodService;
+import com.br.recipe.repository.FoodRepository;
 
-
-@Controller
+@RestController
+@RequestMapping(value = "/food")
 public class FoodController {
+
+
+	private final FoodRepository foodRepository;
 	
-	private final String FOOD_INDEX = "/alimentos";
-	
-	@Autowired
-	private FoodService foodService;
-	
-	@GetMapping(value = FOOD_INDEX)
-	public String listAll(Model model){
-		model.addAttribute("alimentos", foodService.listAll());
-		model.addAttribute("alimento", new Food());
-		return "foodlist";
+	public FoodController(FoodRepository foodRepository) {
+		super();
+		this.foodRepository = foodRepository;
 	}
 
-//	@PostMapping(value = "novoalimento")
-//	public String addNewFood(@ModelAttribute Food food){
-//		foodService.addFood(food);
-//		return "redirect:" + FOOD_INDEX;
-//	}
+	@GetMapping(value = "/alimentos")
+	public List<Food> listAllFood(Model model) {
+		return foodRepository.findAll();
+	}
+
+	@GetMapping(value = "/alimento/{id}")
+	public Food searchFood(@PathVariable Long id) throws Exception {
+	 return foodRepository.findById(id).orElseThrow(() -> new Exception("Alimento não encontrado"));
+	}
+
+	@PostMapping(value = "/alimento/salvar")
+	public void foodSave(@RequestBody Food food) {
+		foodRepository.save(food);
+	}
 }

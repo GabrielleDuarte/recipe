@@ -1,9 +1,9 @@
-package com.br.recipe.dao;
+package com.br.recipe.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.br.recipe.entity.Food;
 
-public interface FoodDAO extends JpaRepository<Food, Long>{
+public interface FoodRepository extends JpaRepository<Food, Long>{
 
 }

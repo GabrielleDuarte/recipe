@@ -2,7 +2,6 @@ package com.br.recipe.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,44 +17,18 @@ public class Recipe {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "nome", nullable = false, length = 80)
-	private String nome;
+	@Column(nullable = false, length = 80)
+	private String name;
+	
+	@Column(nullable = true, length = 5)
+	private int runtime; 
+	
+	@Column ( nullable = true, length = 80)
+	private DifficultyLevel difficultyLevel;
 
 	@OneToMany
 	private List<Ingredients> ingredients;
 	
-	@OneToOne
-	private Process process;
+	private String description;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public List<Ingredients> getIngredients() {
-		return ingredients;
-	}
-
-	public void setIngredients(List<Ingredients> ingredients) {
-		this.ingredients = ingredients;
-	}
-
-	public Process getProcess() {
-		return process;
-	}
-
-	public void setProcess(Process process) {
-		this.process = process;
-	}
 }
