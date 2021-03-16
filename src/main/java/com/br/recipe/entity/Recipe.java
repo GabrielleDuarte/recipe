@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Recipe {
@@ -26,10 +27,14 @@ public class Recipe {
 	@Column ( nullable = true, length = 80)
 	private DifficultyLevel difficultyLevel;
 
-	@OneToMany
+	@Transient 
 	private List<Ingredients> ingredients;
 	
 	private String description;
+	
+	public Recipe() {
+		super();
+	}
 
 	public Recipe(String name, int runtime, DifficultyLevel difficultyLevel, List<Ingredients> ingredients,
 			String description) {
@@ -40,4 +45,46 @@ public class Recipe {
 		this.ingredients = ingredients;
 		this.description = description;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getRuntime() {
+		return runtime;
+	}
+
+	public void setRuntime(int runtime) {
+		this.runtime = runtime;
+	}
+
+	public DifficultyLevel getDifficultyLevel() {
+		return difficultyLevel;
+	}
+
+	public void setDifficultyLevel(DifficultyLevel difficultyLevel) {
+		this.difficultyLevel = difficultyLevel;
+	}
+
+	public List<Ingredients> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredients> ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 }
