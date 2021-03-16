@@ -31,4 +31,13 @@ public class Recipe {
 	
 	private String description;
 
+	public Recipe(String name, int runtime, DifficultyLevel difficultyLevel, List<Ingredients> ingredients,
+			String description) {
+		super();
+		this.name = name;
+		this.runtime = runtime;
+		this.difficultyLevel = difficultyLevel;
+		this.ingredients = ingredients;
+		this.description = description;
+	}
 }
