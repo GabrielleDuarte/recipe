@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Ingredients {
+public class Ingredient {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

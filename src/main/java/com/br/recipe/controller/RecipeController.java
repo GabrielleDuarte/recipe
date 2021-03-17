@@ -16,7 +16,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value = "/apirecipe")
+@RequestMapping(value = "/recipe")
 @Api(value = "API REST Recipe Controller")
 public class RecipeController {
 	
@@ -34,13 +34,13 @@ public class RecipeController {
 		recipeRepository.save(recipe);
 	}
 	
-	@GetMapping(value = "/receitas")
+	@GetMapping(value = "/recipes")
 	@ApiOperation(value = "List all the recipes")
 	public List<Recipe> listRecipes() {
 		return recipeRepository.findAll();
 	}
 	
-	@GetMapping(value = "/receita")
+	@GetMapping()
 	@ApiOperation(value = "List one recipe by id")
 	public Recipe listRecipe(@PathVariable Long id) throws Exception {
 		return recipeRepository.findById(id).orElseThrow(() -> new Exception("Receita não encontrada"));

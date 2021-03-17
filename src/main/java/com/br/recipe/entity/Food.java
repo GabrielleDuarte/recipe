@@ -17,18 +17,29 @@ public class Food {
 	
 	@NotNull
 	@Column(length = 200)
-	private String nome;
+	private String name;
 
-	public Food(String nome) {
+	public Food() {
 		super();
-		this.nome = nome;
+	}
+	
+	public Food(String name) {
+		this.name = name;
 	}
 
-	public String getNome() {
-		return nome;
+	public Long getId() {
+		return id;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getname() {
+		return name;
+	}
+
+	public void setname(String name) {
+		this.name = name;
 	}	
 }

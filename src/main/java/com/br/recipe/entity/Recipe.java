@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -22,28 +21,33 @@ public class Recipe {
 	private String name;
 	
 	@Column(nullable = true, length = 5)
-	private int runtime; 
+	private int preparationTime; 
 	
 	@Column ( nullable = true, length = 80)
 	private DifficultyLevel difficultyLevel;
 
-	@Transient 
-	private List<Ingredients> ingredients;
+	@OneToMany
+	private List<Ingredient> ingredients;
 	
-	private String description;
+	private String preparation;
+	
+	@Column ( nullable = true, length = 80)
+	private String creatorName;
 	
 	public Recipe() {
 		super();
 	}
 
-	public Recipe(String name, int runtime, DifficultyLevel difficultyLevel, List<Ingredients> ingredients,
-			String description) {
+
+	public Recipe(String name, int preparationTime, DifficultyLevel difficultyLevel, List<Ingredient> ingredients,
+			String preparation, String creatorName) {
 		super();
 		this.name = name;
-		this.runtime = runtime;
+		this.preparationTime = preparationTime;
 		this.difficultyLevel = difficultyLevel;
 		this.ingredients = ingredients;
-		this.description = description;
+		this.preparation = preparation;
+		this.creatorName = creatorName;
 	}
 
 	public String getName() {
@@ -54,12 +58,12 @@ public class Recipe {
 		this.name = name;
 	}
 
-	public int getRuntime() {
-		return runtime;
+	public int getpreparationTime() {
+		return preparationTime;
 	}
 
-	public void setRuntime(int runtime) {
-		this.runtime = runtime;
+	public void setpreparationTime(int preparationTime) {
+		this.preparationTime = preparationTime;
 	}
 
 	public DifficultyLevel getDifficultyLevel() {
@@ -70,20 +74,12 @@ public class Recipe {
 		this.difficultyLevel = difficultyLevel;
 	}
 
-	public List<Ingredients> getIngredients() {
-		return ingredients;
+	public String getpreparation() {
+		return preparation;
 	}
 
-	public void setIngredients(List<Ingredients> ingredients) {
-		this.ingredients = ingredients;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setpreparation(String preparation) {
+		this.preparation = preparation;
 	}
 	
 	
