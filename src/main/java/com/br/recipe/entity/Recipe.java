@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class Recipe {
@@ -20,18 +19,19 @@ public class Recipe {
 	@Column(nullable = false, length = 80)
 	private String name;
 	
-	@Column(nullable = true, length = 5)
-	private int preparationTime; 
+	@Column(nullable = true)
+	private float preparationTime; 
 	
-	@Column ( nullable = true, length = 80)
+	@Column ( nullable = true)
 	private DifficultyLevel difficultyLevel;
 
 	@OneToMany
 	private List<Ingredient> ingredients;
 	
+	@Column( nullable = false, length = 3000)
 	private String preparation;
 	
-	@Column ( nullable = true, length = 80)
+	@Column ( nullable = true, length = 300)
 	private String creatorName;
 	
 	public Recipe() {
@@ -39,15 +39,20 @@ public class Recipe {
 	}
 
 
-	public Recipe(String name, int preparationTime, DifficultyLevel difficultyLevel, List<Ingredient> ingredients,
+	public Recipe(String name, int preparationTime, DifficultyLevel difficultyLevel,
 			String preparation, String creatorName) {
 		super();
 		this.name = name;
 		this.preparationTime = preparationTime;
 		this.difficultyLevel = difficultyLevel;
-		this.ingredients = ingredients;
 		this.preparation = preparation;
 		this.creatorName = creatorName;
+	}
+	
+	
+
+	public Long getId() {
+		return id;
 	}
 
 	public String getName() {
@@ -58,7 +63,7 @@ public class Recipe {
 		this.name = name;
 	}
 
-	public int getpreparationTime() {
+	public float getpreparationTime() {
 		return preparationTime;
 	}
 
@@ -81,6 +86,17 @@ public class Recipe {
 	public void setpreparation(String preparation) {
 		this.preparation = preparation;
 	}
+
+
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+	
 	
 	
 }
