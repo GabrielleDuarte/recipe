@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class Recipe {
 
+//	@Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_seq")
+//    @SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_seq", allocationSize = 1)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

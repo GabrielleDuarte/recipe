@@ -36,13 +36,13 @@ public class RecipeController {
 
 	@PostMapping(value = "/register")
 	@ApiOperation(value = "Regist a new recipe")
-	public void registerRecipe(Model model, @ModelAttribute RecipeDTO recipeDTO, @RequestBody List<Food> foodsAndSubstitutes) {
-		recipeService.addRecipe(recipeDTO, foodsAndSubstitutes);
+	public void registerRecipe(Model model, @ModelAttribute RecipeDTO recipeDTO, @RequestBody List<String> foodsAndSubstitutesNames) {
+		recipeService.addRecipe(recipeDTO, foodsAndSubstitutesNames);
 	}
 
 	@GetMapping(value = "/recipes")
 	@ApiOperation(value = "List all the recipes")
-	public List<Recipe> listecipes() {
+	public List<Recipe> listRecipes() {
 		return recipeRepository.findAll();
 	}
 
