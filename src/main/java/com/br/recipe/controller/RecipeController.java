@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.recipe.entity.Food;
 import com.br.recipe.entity.Recipe;
 import com.br.recipe.entity.DTO.RecipeDTO;
-import com.br.recipe.repository.IngredientRepository;
 import com.br.recipe.repository.RecipeRepository;
 import com.br.recipe.service.RecipeService;
 
@@ -46,9 +44,16 @@ public class RecipeController {
 		return recipeRepository.findAll();
 	}
 
-	@GetMapping()
+	@GetMapping("/{id}")
 	@ApiOperation(value = "List one recipe by id")
 	public Recipe listRecipe(@PathVariable Long id) throws Exception {
 		return recipeRepository.findById(id).orElseThrow(() -> new Exception("Receita não encontrada"));
 	}
+	
+//	@GetMapping()
+//	@ApiOperation(value = "List one recipe by id")
+//	public Recipe listRecipe(@PathVariable Long id) throws Exception {
+//		return recipeRepository.findById(id).orElseThrow(() -> new Exception("Receita não encontrada"));
+//	}
+	
 }

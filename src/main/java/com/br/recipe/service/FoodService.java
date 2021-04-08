@@ -16,6 +16,7 @@ public class FoodService {
 	}
 	
 	public Food addFood(String name) {
+				
 		if(foodRepository.findByName(name) == null) {
 			Food food = new Food(name);
 			foodRepository.save(food);
